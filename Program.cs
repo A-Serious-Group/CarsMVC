@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ builder.Services.AddControllersWithViews();
 // Add ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add HttpClientFactory
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -39,6 +46,11 @@ app.MapControllerRoute(
     name: "brands",
     pattern: "brand/{action=Index}/{id?}",
     defaults: new { controller = "Brand" }
+);
+app.MapControllerRoute(
+    name: "lojas",
+    pattern: "lojas/{action=Index}/{id?}",
+    defaults: new { controller = "Lojas" }
 );
 
 app.MapControllerRoute(

@@ -1,0 +1,25 @@
+@model List<CarrosMVC.Models.Loja>
+
+<h1>Lista de Lojas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>UF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var loja in Model)
+        {
+            <tr>
+                <td>@loja.Id</td>
+                <td>@loja.Nome</td>
+                <td>@loja.Cidade</td>
+                <td>@loja.UF</td>
+            </tr>
+        }
+    </tbody>
+</table>
