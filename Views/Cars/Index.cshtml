@@ -13,7 +13,8 @@
             <th>Nome</th>
             <th>Marca</th>
             <th>Carroceria</th>
-            <th></th>
+            <th>Ano</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
                 <td>@carro.Nome</td>
                 <td>@carro.Marca.Nome</td>
                 <td>@carro.Carroceria.Nome</td>
+                <td>@carro.Ano</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@carro.Id" class="btn btn-primary">Editar</a>
                     <a asp-action="Delete" asp-route-id="@carro.Id" class="btn btn-danger">Excluir</a>

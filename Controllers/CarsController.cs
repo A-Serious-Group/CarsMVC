@@ -58,7 +58,7 @@ namespace CarrosMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Nome,MarcaId,CarroceriaId")] Carro carro)
+        public IActionResult Create([Bind("Id,Nome,MarcaId,CarroceriaId,Ano")] Carro carro)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace CarrosMVC.Controllers
         // POST: Cars/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Nome,MarcaId,CarroceriaId")] Carro carro)
+        public IActionResult Edit(int id, [Bind("Id,Nome,MarcaId,CarroceriaId,Ano")] Carro carro)
         {
             if (id != carro.Id)
             {
@@ -148,7 +148,7 @@ namespace CarrosMVC.Controllers
             return View(carro);
         }
 
-        // POST: BodyWork/DeleteConfirmed/5
+        // POST: Cars/DeleteConfirmed/5
         [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

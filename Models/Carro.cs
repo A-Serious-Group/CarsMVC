@@ -10,5 +10,7 @@ namespace CarrosMVC.Models
 
         public int CarroceriaId { get; set; }
         public Carroceria? Carroceria { get; set; }
+
+         public int Ano { get; set; }
     }
 }
