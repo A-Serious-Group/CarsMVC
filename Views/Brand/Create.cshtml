@@ -1,0 +1,17 @@
+@model CarrosMVC.Models.Marca
+
+@{
+    ViewData["Title"] = "Criar Nova Marca";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Nome" class="control-label"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -34,8 +34,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9keVdvcmsvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nate/Documentos/univem/CarsMVC/Views/Cars/Cars.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9DYXJzLmNzaHRtbA==
+[/home/nate/Documentos/univem/CarsMVC/Views/Brand/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Brand/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Brand/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Brand/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQnJhbmQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Cars/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Cars/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Cars/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Cars/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nate/Documentos/univem/CarsMVC/Views/Home/Index.cshtml]

@@ -31,9 +31,14 @@ app.MapControllerRoute(
     defaults: new { controller = "Cars" }
 );
 app.MapControllerRoute(
-    name: "models",
+    name: "bodyworks",
     pattern: "bodywork/{action=Index}/{id?}",
     defaults: new { controller = "BodyWork" }
+);
+app.MapControllerRoute(
+    name: "brands",
+    pattern: "brand/{action=Index}/{id?}",
+    defaults: new { controller = "Brand" }
 );
 
 app.MapControllerRoute(
