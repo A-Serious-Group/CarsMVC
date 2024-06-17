@@ -1,4 +1,4 @@
-@model List<CarrosMVC.Models.Carro>
+@model CarrosMVC.Models.CarrosIndexViewModel
 
 @{
     ViewData["Title"] = "Carros";
@@ -9,16 +9,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nome</th>
+            <th>Id Carro</th>
+            <th>Nome Carro</th>
             <th>Marca</th>
             <th>Carroceria</th>
             <th>Ano</th>
+            <th>Loja</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var carro in Model)
+        @foreach (var carro in Model.Carros)
         {
             <tr>
                 <td>@carro.Id</td>
@@ -26,6 +27,13 @@
                 <td>@carro.Marca.Nome</td>
                 <td>@carro.Carroceria.Nome</td>
                 <td>@carro.Ano</td>
+                @foreach (var loja in Model.Lojas)
+                {
+                    if (loja.Id == carro.LojaIdentifier)
+                    {
+                        <td>@loja.Nome / @loja.Cidade-@loja.UF</td>
+                    }
+                }
                 <td>
                     <a asp-action="Edit" asp-route-id="@carro.Id" class="btn btn-primary">Editar</a>
                     <a asp-action="Delete" asp-route-id="@carro.Id" class="btn btn-danger">Excluir</a>

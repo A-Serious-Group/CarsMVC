@@ -5,6 +5,8 @@ namespace CarrosMVC.Models
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
 
+        public int LojaIdentifier { get; set; }
+
         public int MarcaId { get; set; }
         public Marca? Marca { get; set; }
 

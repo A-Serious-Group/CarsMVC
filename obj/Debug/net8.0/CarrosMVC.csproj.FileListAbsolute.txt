@@ -208,3 +208,4 @@
 /home/nate/Documentos/univem/CarsMVC/obj/Debug/net8.0/CarrosMVC.pdb
 /home/nate/Documentos/univem/CarsMVC/obj/Debug/net8.0/CarrosMVC.genruntimeconfig.cache
 /home/nate/Documentos/univem/CarsMVC/obj/Debug/net8.0/ref/CarrosMVC.dll
+/home/nate/Documentos/univem/CarsMVC/bin/Debug/net8.0/Newtonsoft.Json.dll

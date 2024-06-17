@@ -6,7 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label asp-for="Nome" class="control-label"></label>
@@ -28,6 +28,15 @@
         <input asp-for="Ano" class="form-control" type="number" min="1800" max="@DateTime.Now.Year" />
         <span asp-validation-for="Ano" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="LojaIdentifier" class="control-label">Loja</label>
+        <select asp-for="LojaIdentifier" class="form-control" asp-items="ViewBag.Lojas"></select>
+        <span asp-validation-for="LojaIdentifier" class="text-danger"></span>
+    </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

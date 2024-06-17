@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace CarrosMVC.Controllers
 {
@@ -20,11 +22,26 @@ namespace CarrosMVC.Controllers
             _context = context;
         }
 
-        // GET: Cars
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var carros = _context.Carros.Include(c => c.Marca).Include(c => c.Carroceria).ToList();
-            return View(carros);
+
+            List<Loja> lojas;
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync("http://localhost:5171/api/Lojas");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    lojas = JsonConvert.DeserializeObject<List<Loja>>(content);
+                }
+                else
+                {
+                    throw new Exception("Failed to retrieve lojas from the external API.");
+                }
+            }
+
+            return View(new CarrosIndexViewModel { Carros = carros, Lojas = lojas });
         }
 
         // GET: Cars/Details/5
@@ -49,16 +66,34 @@ namespace CarrosMVC.Controllers
         }
 
         // GET: Cars/Create
-        public IActionResult Create()
-        {
-            ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome");
-            ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome");
-            return View();
-        }
+         public async Task<IActionResult> Create()
+            {
+                ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome");
+                ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome");
+
+                List<Loja> lojas;
+                using (var client = new HttpClient())
+                {
+                    var response = await client.GetAsync("http://localhost:5171/api/Lojas");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        lojas = JsonConvert.DeserializeObject<List<Loja>>(content);
+                    }
+                    else
+                    {
+                        throw new Exception("Failed to retrieve lojas from the external API.");
+                    }
+                }
+
+                ViewBag.Lojas = new SelectList(lojas, "Id", "Nome");
+
+                return View();
+            }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Nome,MarcaId,CarroceriaId,Ano")] Carro carro)
+        public IActionResult Create([Bind("Id,Nome,MarcaId,CarroceriaId,Ano, LojaIdentifier")] Carro carro)
         {
             if (ModelState.IsValid)
             {
@@ -70,62 +105,116 @@ namespace CarrosMVC.Controllers
             }
             ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome", carro.MarcaId);
             ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome", carro.CarroceriaId);
+
+            List<Loja> lojas;
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync("http://localhost:5171/api/Lojas").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    lojas = JsonConvert.DeserializeObject<List<Loja>>(content);
+                }
+                else
+                {
+                    throw new Exception("Failed to retrieve lojas from the external API.");
+                }
+            }
+            ViewBag.Lojas = new SelectList(lojas, "Id", "Nome", carro.LojaIdentifier);
             return View(carro);
         }
 
         // GET: Cars/Edit/5
-        public IActionResult Edit(int? id)
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var carro = _context.Carros.Find(id);
-            if (carro == null)
-            {
-                return NotFound();
-            }
-
-            ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome", carro.MarcaId);
-            ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome", carro.CarroceriaId);
-            return View(carro);
+            return NotFound();
         }
 
-        // POST: Cars/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Nome,MarcaId,CarroceriaId,Ano")] Carro carro)
+        var carro = await _context.Carros.FindAsync(id);
+        if (carro == null)
         {
-            if (id != carro.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(carro);
-                    _context.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CarroExists(carro.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome", carro.MarcaId);
-            ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome", carro.CarroceriaId);
-            return View(carro);
+            return NotFound();
         }
+
+        ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome", carro.MarcaId);
+        ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome", carro.CarroceriaId);
+
+        List<Loja> lojas;
+        using (var client = new HttpClient())
+        {
+            var response = await client.GetAsync("http://localhost:5171/api/Lojas");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                lojas = JsonConvert.DeserializeObject<List<Loja>>(content);
+            }
+            else
+            {
+                throw new Exception("Failed to retrieve lojas from the external API.");
+            }
+        }
+
+        ViewBag.Lojas = new SelectList(lojas, "Id", "Nome", carro.LojaIdentifier);
+
+        return View(carro);
+    }
+
+    // POST: Cars/Edit/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(int id, [Bind("Id,Nome,MarcaId,CarroceriaId,Ano,LojaIdentifier")] Carro carro)
+    {
+        if (id != carro.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _context.Update(carro);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CarroExists(carro.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        ViewBag.MarcaId = new SelectList(_context.Marcas, "Id", "Nome", carro.MarcaId);
+        ViewBag.CarroceriaId = new SelectList(_context.Carrocerias, "Id", "Nome", carro.CarroceriaId);
+
+        // Recarregar as lojas em caso de falha na validação
+        List<Loja> lojas;
+        using (var client = new HttpClient())
+        {
+            var response = client.GetAsync("http://localhost:5171/api/Lojas").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var content = response.Content.ReadAsStringAsync().Result;
+                lojas = JsonConvert.DeserializeObject<List<Loja>>(content);
+            }
+            else
+            {
+                throw new Exception("Failed to retrieve lojas from the external API.");
+            }
+        }
+        ViewBag.Lojas = new SelectList(lojas, "Id", "Nome", carro.LojaIdentifier);
+
+        return View(carro);
+    }
+
 
         // GET: Cars/Delete/5
         public IActionResult Delete(int? id)
