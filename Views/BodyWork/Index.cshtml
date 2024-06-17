@@ -1,16 +1,21 @@
 @model List<CarrosMVC.Models.Carroceria>
 
 @{
-    ViewData["Title"] = "CARROCERIA";
+    ViewData["Title"] = "Carrocerias";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar Nova Carroceria</a>
+</p>
 
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nome</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +24,10 @@
             <tr>
                 <td>@carroceria.Id</td>
                 <td>@carroceria.Nome</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@carroceria.Id" class="btn btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@carroceria.Id" class="btn btn-danger">Excluir</a>
+                </td>
             </tr>
         }
     </tbody>
