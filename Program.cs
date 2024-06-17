@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using CarrosMVC.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +26,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Adicionar a rota específica para CarsController
 app.MapControllerRoute(
     name: "cars",
     pattern: "cars/{action=Index}/{id?}",
     defaults: new { controller = "Cars" }
+);
+
+app.MapControllerRoute(
+    name: "models",
+    pattern: "models/{action=Index}/{id?}",
+    defaults: new { controller = "Models" }
 );
 
 app.MapControllerRoute(

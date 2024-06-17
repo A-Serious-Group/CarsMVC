@@ -1,14 +1,18 @@
+// Data/ApplicationDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using CarrosMVC.Models;
 
-public class ApplicationDbContext : DbContext
+namespace CarrosMVC.Data
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
+    public class ApplicationDbContext : DbContext
     {
-    }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
 
-    public DbSet<Carro> Carros { get; set; }
-    public DbSet<Marca> Marcas { get; set; }
-    public DbSet<Modelo> Modelos { get; set; }
+        public DbSet<Carro> Carros { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Modelo> Modelos { get; set; }
+    }
 }
