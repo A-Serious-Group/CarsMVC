@@ -74,6 +74,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/nate/Documentos/univem/CarsMVC/Views/Lojas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9qYXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nate/Documentos/univem/CarsMVC/Views/Lojas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9qYXMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/nate/Documentos/univem/CarsMVC/Views/Lojas/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9qYXMvaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,63 @@
+@model CarrosMVC.Models.Loja
+
+@{
+    ViewData["Title"] = "Criar Nova Loja";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form id="createLojaForm" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Nome" class="control-label"></label>
+        <input asp-for="Nome" id="nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cidade" class="control-label"></label>
+        <input asp-for="Cidade" id="cidade" class="form-control" />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-4">
+        <label asp-for="UF" class="control-label"></label>
+        <input asp-for="UF" id="uf" class="form-control" />
+        <span asp-validation-for="UF" class="text-danger"></span>
+    </div>
+    <button type="button" id="submitBtn" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            var nome = document.getElementById('nome').value;
+            var cidade = document.getElementById('cidade').value;
+            var uf = document.getElementById('uf').value;
+
+            var data = {
+                Nome: nome,
+                Cidade: cidade,
+                UF: uf
+            };
+
+            // Envia os dados via fetch usando JSON
+            fetch('/lojas/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/lojas';
+                } else {
+                    throw new Error('Failed to create new loja.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to create new loja.');
+            });
+        });
+    </script>
+}

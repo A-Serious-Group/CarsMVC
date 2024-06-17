@@ -9,6 +9,7 @@
             <th>Nome</th>
             <th>Cidade</th>
             <th>UF</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +20,12 @@
                 <td>@loja.Nome</td>
                 <td>@loja.Cidade</td>
                 <td>@loja.UF</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@loja.Id" class="btn btn-primary">Editar</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<a asp-action="Create" class="btn btn-success">Nova Loja</a>
