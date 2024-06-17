@@ -27,7 +27,7 @@
         <input asp-for="Ano" class="form-control" type="number" min="1800" max="@DateTime.Now.Year" />
         <span asp-validation-for="Ano" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-3">
         <label asp-for="LojaIdentifier" class="control-label">Loja</label>
         <select asp-for="LojaIdentifier" class="form-control" asp-items="ViewBag.Lojas"></select>
         <span asp-validation-for="LojaIdentifier" class="text-danger"></span>
