@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/nate/Documentos/univem/CarrosMVC/CarrosMVC.csproj": {}
+    "/home/nate/Documentos/univem/CarsMVC/CarrosMVC.csproj": {}
   },
   "projects": {
-    "/home/nate/Documentos/univem/CarrosMVC/CarrosMVC.csproj": {
+    "/home/nate/Documentos/univem/CarsMVC/CarrosMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nate/Documentos/univem/CarrosMVC/CarrosMVC.csproj",
+        "projectUniqueName": "/home/nate/Documentos/univem/CarsMVC/CarrosMVC.csproj",
         "projectName": "CarrosMVC",
-        "projectPath": "/home/nate/Documentos/univem/CarrosMVC/CarrosMVC.csproj",
+        "projectPath": "/home/nate/Documentos/univem/CarsMVC/CarrosMVC.csproj",
         "packagesPath": "/home/nate/.nuget/packages/",
-        "outputPath": "/home/nate/Documentos/univem/CarrosMVC/obj/",
+        "outputPath": "/home/nate/Documentos/univem/CarsMVC/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/nate/.nuget/NuGet/NuGet.Config"
