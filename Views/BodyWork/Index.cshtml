@@ -1,0 +1,25 @@
+@model List<CarrosMVC.Models.Carroceria>
+
+@{
+    ViewData["Title"] = "CARROCERIA";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carroceria in Model)
+        {
+            <tr>
+                <td>@carroceria.Id</td>
+                <td>@carroceria.Nome</td>
+            </tr>
+        }
+    </tbody>
+</table>

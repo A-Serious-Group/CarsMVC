@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarrosMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6cedccfde1539c8b8b55acaa38aa77181e76e672")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7b61ec9d352c73f4aa0f07e8ddcf38b7b67770c")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarrosMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarrosMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

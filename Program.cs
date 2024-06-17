@@ -25,11 +25,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Adicionar a rota específica para CarsController
 app.MapControllerRoute(
     name: "cars",
     pattern: "cars/{action=Index}/{id?}",
     defaults: new { controller = "Cars" }
+);
+app.MapControllerRoute(
+    name: "models",
+    pattern: "bodywork/{action=Index}/{id?}",
+    defaults: new { controller = "BodyWork" }
 );
 
 app.MapControllerRoute(

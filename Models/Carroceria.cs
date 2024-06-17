@@ -1,6 +1,6 @@
 namespace CarrosMVC.Models
 {
-    public class Marca
+    public class Carroceria
     {
         public int Id { get; set; }
         public string Nome { get; set; }

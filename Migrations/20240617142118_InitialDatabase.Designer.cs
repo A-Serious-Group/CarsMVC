@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CarrosMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240616231215_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240617142118_InitialDatabase")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace CarrosMVC.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Carro", b =>
+            modelBuilder.Entity("CarrosMVC.Models.Carro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,10 +31,10 @@ namespace CarrosMVC.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("MarcaId")
+                    b.Property<int>("CarroceriaId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ModeloId")
+                    b.Property<int>("MarcaId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")
@@ -43,14 +43,31 @@ namespace CarrosMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MarcaId");
+                    b.HasIndex("CarroceriaId");
 
-                    b.HasIndex("ModeloId");
+                    b.HasIndex("MarcaId");
 
                     b.ToTable("Carros");
                 });
 
-            modelBuilder.Entity("Marca", b =>
+            modelBuilder.Entity("CarrosMVC.Models.Carroceria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carrocerias");
+                });
+
+            modelBuilder.Entity("CarrosMVC.Models.Marca", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,61 +84,23 @@ namespace CarrosMVC.Migrations
                     b.ToTable("Marcas");
                 });
 
-            modelBuilder.Entity("Modelo", b =>
+            modelBuilder.Entity("CarrosMVC.Models.Carro", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.HasOne("CarrosMVC.Models.Carroceria", "Carroceria")
+                        .WithMany()
+                        .HasForeignKey("CarroceriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("MarcaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MarcaId");
-
-                    b.ToTable("Modelos");
-                });
-
-            modelBuilder.Entity("Carro", b =>
-                {
-                    b.HasOne("Marca", "Marca")
+                    b.HasOne("CarrosMVC.Models.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("MarcaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Carroceria");
 
                     b.Navigation("Marca");
-
-                    b.Navigation("Modelo");
-                });
-
-            modelBuilder.Entity("Modelo", b =>
-                {
-                    b.HasOne("Marca", "Marca")
-                        .WithMany("Modelos")
-                        .HasForeignKey("MarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Marca");
-                });
-
-            modelBuilder.Entity("Marca", b =>
-                {
-                    b.Navigation("Modelos");
                 });
 #pragma warning restore 612, 618
         }

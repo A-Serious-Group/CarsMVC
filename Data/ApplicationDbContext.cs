@@ -10,5 +10,5 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Carro> Carros { get; set; }
     public DbSet<Marca> Marcas { get; set; }
-    public DbSet<Modelo> Modelos { get; set; }
+    public DbSet<Carroceria> Carrocerias { get; set; }
 }

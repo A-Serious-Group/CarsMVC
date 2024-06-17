@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/nate/Documentos/univem/CarsMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/nate/Documentos/univem/CarsMVC/Views/BodyWork/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9keVdvcmsvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/nate/Documentos/univem/CarsMVC/Views/Cars/Cars.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2Fycy9DYXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
