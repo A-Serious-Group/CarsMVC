@@ -52,6 +52,11 @@ namespace CarrosMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Loja novaLoja)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(novaLoja);
+            }
+
             var client = _clientFactory.CreateClient();
 
             try
@@ -67,12 +72,14 @@ namespace CarrosMVC.Controllers
                 }
                 else
                 {
-                    return StatusCode((int)response.StatusCode, "Failed to create new loja.");
+                    ModelState.AddModelError(string.Empty, "Failed to create new loja.");
+                    return View(novaLoja);
                 }
             }
             catch (Exception ex)
             {
-                return BadRequest($"Error: {ex.Message}");
+                ModelState.AddModelError(string.Empty, $"Error: {ex.Message}");
+                return View(novaLoja);
             }
         }
 
